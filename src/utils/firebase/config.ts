@@ -1,0 +1,18 @@
+import {initializeApp} from "firebase/app";
+import {getAuth, signInWithPopup, GithubAuthProvider} from 'firebase/auth';
+
+const firebaseConfig = {
+  apiKey: "AIzaSyAe0BhemjER5tUTlncMaeYNdUAG-sZt4fo",
+  authDomain: "github-c1171.firebaseapp.com",
+  projectId: "github-c1171",
+  storageBucket: "github-c1171.appspot.com",
+  messagingSenderId: "995225581244",
+  appId: "1:995225581244:web:6e9b2de122e560efb8c2b9"
+};
+
+initializeApp(firebaseConfig);
+
+const provider = new GithubAuthProvider();
+
+export const auth = getAuth();
+export const signInWithGitHubPopup = () => signInWithPopup(auth, provider);
