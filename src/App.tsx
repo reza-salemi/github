@@ -1,8 +1,8 @@
 import React from 'react';
-import Header from "./components/header";
+import Header from "./components/layouts/header";
 import {Routes, Route} from "react-router-dom";
 import Home from "./pages/home";
-import Footer from "./components/footer";
+import Footer from "./components/layouts/footer";
 import NotFound from "./pages/not-found";
 import Profile from "./pages/profile";
 
