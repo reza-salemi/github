@@ -1,5 +1,13 @@
 import {initializeApp} from "firebase/app";
-import {getAuth, signInWithPopup, GithubAuthProvider} from 'firebase/auth';
+import {
+  getAuth,
+  signInWithPopup,
+  GithubAuthProvider,
+  signOut,
+  onAuthStateChanged,
+  NextOrObserver,
+  User,
+} from 'firebase/auth';
 
 const firebaseConfig = {
   apiKey: "AIzaSyAe0BhemjER5tUTlncMaeYNdUAG-sZt4fo",
@@ -16,3 +24,7 @@ const provider = new GithubAuthProvider();
 
 export const auth = getAuth();
 export const signInWithGitHubPopup = () => signInWithPopup(auth, provider);
+
+export const userSignOut = async () => await signOut(auth);
+
+export const onAuthStateChangedListener = (callback:NextOrObserver<User>) => onAuthStateChanged(auth, callback);
