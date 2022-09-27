@@ -9,7 +9,7 @@ const NotFound = () => {
           404
         </h1>
         <p className="text-4xl mb-8">This is not the web page you are looking for!</p>
-        <Link to="/" className="btn btn-primary btn-lg">
+        <Link to="/" className="btn dark:btn-primary btn-secondary btn-lg">
           <FaHome className="mr-2"/>
           Back To Home
         </Link>

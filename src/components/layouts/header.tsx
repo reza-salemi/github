@@ -5,6 +5,7 @@ import {signInWithGitHubPopup, userSignOut} from "../../utils/firebase/config";
 
 import {UserContext} from "../../contexts/user.context";
 import SearchBar from "../search";
+import ToggleTheme from "../toggle-theme";
 
 const Header = () => {
   const currentUser = useContext(UserContext);
@@ -14,11 +15,11 @@ const Header = () => {
   };
 
   return (
-    <header className="bg-neutral text-neutral-content">
+    <header className="dark:bg-neutral bg-blue-600 text-neutral-content">
       <nav className="navbar container mx-auto">
         <div className="flex-1 gap-3">
           <Link to="/">
-            <FaGithub className="text-3xl hover:bg-gray-600 rounded-full"/>
+            <FaGithub className="text-3xl dark:hover:bg-gray-600 hover:bg-blue-700 rounded-full"/>
           </Link>
           <SearchBar/>
         </div>
@@ -35,7 +36,7 @@ const Header = () => {
                 </div>
               </label>
               <ul tabIndex={0}
-                  className="mt-3 p-2 shadow menu menu-compact dropdown-content bg-neutral rounded-box w-52 text-neutral-content">
+                  className="mt-3 p-2 shadow menu menu-compact dropdown-content dark:bg-neutral bg-blue-600 rounded-box w-52 text-neutral-content">
                 <li>
                   <span className="justify-between">
                     Profile
@@ -45,6 +46,7 @@ const Header = () => {
               </ul>
             </div>)
           }
+          <ToggleTheme />
         </div>
       </nav>
     </header>
