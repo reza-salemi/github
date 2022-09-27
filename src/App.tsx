@@ -12,7 +12,7 @@ function App() {
   return (
     <div
       data-theme={theme === 'dark' ? 'dark' : 'light'}
-      className="flex flex-col justify-between h-screen">
+      className="flex flex-col justify-between min-h-screen">
       <Header/>
 
       <main>
