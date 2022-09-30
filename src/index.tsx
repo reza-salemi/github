@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import {BrowserRouter} from 'react-router-dom';
-import {UserProvider} from "./contexts/user.context";
+import {AuthProvider} from "./contexts/auth.context";
 import './index.css';
 import App from './App';
 import {ThemeProvider} from "./contexts/theme.context";
@@ -12,10 +12,10 @@ const root = ReactDOM.createRoot(
 root.render(
   <React.StrictMode>
     <BrowserRouter>
-      <ThemeProvider initialTheme="dark">
-        <UserProvider>
+      <ThemeProvider>
+        <AuthProvider>
           <App/>
-        </UserProvider>
+        </AuthProvider>
       </ThemeProvider>
     </BrowserRouter>
   </React.StrictMode>
