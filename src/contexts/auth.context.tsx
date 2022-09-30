@@ -28,7 +28,7 @@ export const AuthProvider = ({children}: { children: ReactNode }) => {
     getCurrentUser().then(json => setCurrentUser(json));
 
     return unSubscribe;
-  }, [firebaseUser,currentUser]);
+  }, []);
 
   return <AuthContext.Provider value={{firebaseUser,currentUser}}>{children}</AuthContext.Provider>;
 };
