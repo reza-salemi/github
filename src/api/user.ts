@@ -5,7 +5,7 @@ export const getCurrentUser = async () => {
   return response.data;
 };
 
-export const getUser = async (username: string | undefined) => {
+export const getUser = async (username:string) => {
   const response = await reqInstance.get(`/users/${username}`);
   return response.data;
 };
