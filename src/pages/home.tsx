@@ -1,9 +1,7 @@
-import UserResults from "../components/users/user-results";
-
 const Home = () => {
   return (
     <div>
-      <UserResults />
+      <h2>Welcome</h2>
     </div>
   );
 };
