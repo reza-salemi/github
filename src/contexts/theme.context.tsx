@@ -1,13 +1,8 @@
 import {createContext, useState, useEffect, ReactNode} from 'react';
 
-interface ThemeProviderProps {
-  initialTheme: string;
-  children: ReactNode;
-}
-
 interface ThemeContextInterface {
   theme: string,
-  setTheme: (theme:string) => void
+  setTheme: (theme: string) => void
 }
 
 const getInitialTheme = () => {
@@ -28,22 +23,18 @@ export const ThemeContext = createContext<ThemeContextInterface>({
   setTheme: () => null,
 });
 
-export const ThemeProvider = ({initialTheme, children}: ThemeProviderProps) => {
+export const ThemeProvider = ({children}: { children: ReactNode }) => {
   const [theme, setTheme] = useState(getInitialTheme);
 
   const checkTheme = (existing: string) => {
-    const root = window.document.documentElement;
+    const htmlElement = window.document.documentElement;
     const isDark = existing === 'dark';
 
-    root.classList.remove(isDark ? 'light' : 'dark');
-    root.classList.add(existing);
+    htmlElement.classList.remove(isDark ? 'light' : 'dark');
+    htmlElement.classList.add(existing);
 
     localStorage.setItem('current-theme', existing);
   };
-
-  if (initialTheme) {
-    checkTheme(initialTheme);
-  }
 
   useEffect(() => {
     checkTheme(theme);
