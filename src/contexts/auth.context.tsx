@@ -21,12 +21,11 @@ export const AuthProvider = ({children}: { children: ReactNode }) => {
   useEffect(() => {
     const unSubscribe = onAuthStateChangedListener((user) => {
       setFirebaseUser(user)
+      getCurrentUser().then(json => setCurrentUser(json));
       if (!user) {
         localStorage.removeItem('github-token');
       }
     });
-    getCurrentUser().then(json => setCurrentUser(json));
-
     return unSubscribe;
   }, []);
 

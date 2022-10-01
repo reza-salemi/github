@@ -2,8 +2,8 @@ import {signInWithGitHubPopup} from "../utils/firebase/config";
 import {GithubAuthProvider} from "firebase/auth";
 
 const SignIn = () => {
-  const logGitHubUser = async () => {
-    await signInWithGitHubPopup().then((result) => {
+  const logGitHubUser = () => {
+    signInWithGitHubPopup().then((result) => {
       const credential = GithubAuthProvider.credentialFromResult(result);
       const token = credential?.accessToken;
       if (typeof token === "string") {
@@ -16,7 +16,7 @@ const SignIn = () => {
   };
   return (
     <button className="btn btn-sm btn-ghost" onClick={logGitHubUser}>SIGN IN</button>
-  )
-}
+  );
+};
 
 export default SignIn;
