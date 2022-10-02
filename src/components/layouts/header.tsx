@@ -5,10 +5,10 @@ import {userSignOut} from "../../utils/firebase/config";
 import {AuthContext} from "../../contexts/auth.context";
 import SearchBar from "../search";
 import ToggleTheme from "../toggle-theme";
-import SignIn from "../sign-in";
 
 const Header = () => {
-  const {firebaseUser,currentUser} = useContext(AuthContext);
+  const {firebaseUser,logGitHubUser} = useContext(AuthContext);
+  const username = localStorage.getItem('username');
 
   return (
     <header className="dark:bg-neutral mb-8 bg-blue-500 text-neutral-content">
@@ -23,7 +23,7 @@ const Header = () => {
         <div className="flex-none gap-1">
           {!firebaseUser ?
             (<div className="form-control">
-                <SignIn />
+              <button className="btn btn-sm btn-ghost" onClick={logGitHubUser}>SIGN IN</button>
             </div>) :
             (<div className="dropdown dropdown-end">
               <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
@@ -34,7 +34,7 @@ const Header = () => {
               <ul tabIndex={0}
                   className="mt-3 p-2 shadow menu menu-compact dropdown-content dark:bg-neutral bg-blue-500 rounded-box w-52 text-neutral-content">
                 <li>
-                  <Link to={`/user/${currentUser?.login}`} className="justify-between">
+                  <Link to={`/user/${username}`} className="justify-between">
                     User profile
                   </Link>
                 </li>
