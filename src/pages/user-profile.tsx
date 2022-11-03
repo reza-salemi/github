@@ -1,7 +1,7 @@
 import {FaCodepen, FaUserFriends, FaUsers} from "react-icons/fa";
 import {useEffect, useState} from "react";
 import {useParams, useNavigate} from "react-router-dom";
-import {getUser, getUserRepos} from "../api/user";
+import {getAuthUserRepos, getUser, getUserRepos} from "../api/user";
 import {GithubUser} from "../types/user.type";
 import RepoList from "../components/repos/repo-list";
 
@@ -9,6 +9,7 @@ const UserProfile = () => {
   const [user, setUser] = useState<GithubUser | null>(null);
   const [repos, setRepos] = useState();
   const [loading, setLoading] = useState(true);
+  const authUsername = localStorage.getItem('username');
 
   const {username} = useParams();
   const Navigate = useNavigate();
@@ -24,7 +25,11 @@ const UserProfile = () => {
         }
       });
     }
-    getUserRepos(username).then(json => setRepos(json));
+    if (username === authUsername) {
+      getAuthUserRepos().then(json => setRepos(json))
+    } else {
+      getUserRepos(username).then(json => setRepos(json));
+    }
   }, [username, Navigate]);
 
   if (loading) return <p>Loading...</p>;
