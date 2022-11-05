@@ -7,12 +7,12 @@ export const getUser = async (username: string) => {
 
 
 export const getUserRepos = async (username?: string) => {
-  const response = await reqInstance.get(`/users/${username}/repos`);
+  const response = await reqInstance.get(`/users/${username}/repos?sort=created`);
   return response.data;
 };
 
-export const getAuthUserRepos = async () => {
-  const response = await reqInstance.get(`/user/repos`);
+export const getAuthUserRepos = async (page:number) => {
+  const response = await reqInstance.get(`/user/repos?sort=created&per_page=10&page=${page}`);
   return response.data;
 };
 

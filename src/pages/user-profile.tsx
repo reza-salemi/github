@@ -5,13 +5,15 @@ import {getAuthUserRepos, getUser, getUserRepos} from "../api/user";
 import {GithubUser} from "../types/user.type";
 import {RepoType} from "../types/repo.type";
 import RepoList from "../components/repos/repo-list";
+import Pagination from "../components/pagination";
 
 const UserProfile = () => {
   const [user, setUser] = useState<GithubUser | null>(null);
   const [repos, setRepos] = useState<RepoType[]>([]);
   const [loading, setLoading] = useState(true);
-  const authUsername = localStorage.getItem('username');
+  const [page, setPage] = useState(1);
 
+  const authUsername = localStorage.getItem('username');
   const {username} = useParams();
   const Navigate = useNavigate();
 
@@ -27,12 +29,12 @@ const UserProfile = () => {
       });
     }
     if (username === authUsername) {
-      getAuthUserRepos().then(json => setRepos(json));
+      getAuthUserRepos(page).then(json => setRepos(json));
     } else {
       getUserRepos(username).then(json => setRepos(json));
     }
 
-  }, [username, Navigate]);
+  }, [username, Navigate, authUsername, page]);
 
   if (loading) return <p>Loading...</p>;
 
@@ -123,6 +125,12 @@ const UserProfile = () => {
         </div>
 
         <RepoList repos={repos}/>
+        <div className="flex justify-center mt-4">
+          <Pagination
+            page={page}
+            setPage={setPage}
+          />
+        </div>
       </div>
     </>
   );
