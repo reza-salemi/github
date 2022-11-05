@@ -3,11 +3,12 @@ import {useEffect, useState} from "react";
 import {useParams, useNavigate} from "react-router-dom";
 import {getAuthUserRepos, getUser, getUserRepos} from "../api/user";
 import {GithubUser} from "../types/user.type";
+import {RepoType} from "../types/repo.type";
 import RepoList from "../components/repos/repo-list";
 
 const UserProfile = () => {
   const [user, setUser] = useState<GithubUser | null>(null);
-  const [repos, setRepos] = useState();
+  const [repos, setRepos] = useState<RepoType[]>([]);
   const [loading, setLoading] = useState(true);
   const authUsername = localStorage.getItem('username');
 
@@ -26,10 +27,11 @@ const UserProfile = () => {
       });
     }
     if (username === authUsername) {
-      getAuthUserRepos().then(json => setRepos(json))
+      getAuthUserRepos().then(json => setRepos(json));
     } else {
       getUserRepos(username).then(json => setRepos(json));
     }
+
   }, [username, Navigate]);
 
   if (loading) return <p>Loading...</p>;
