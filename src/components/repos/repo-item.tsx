@@ -1,6 +1,11 @@
 import {FaEye, FaInfo, FaLink, FaStar, FaUtensils} from "react-icons/fa";
+import {RepoType} from "../../types/repo.type";
 
-const RepoItem = ({repo}: any) => {
+interface RepoPropType {
+  repo: RepoType;
+}
+
+const RepoItem = ({repo}: RepoPropType) => {
   return (
     <div className="mb-2 rounded-md card dark:bg-gray-800 dark:hover:bg-gray-900 hover:bg-gray-600 bg-base-100">
       <div className="card-body">
